@@ -1,11 +1,25 @@
+tf() {
+    local cmd=$1
+    local service=$2
 
-function tf {
-    if [ -f "variables.tfvars" ]; then
-        echo "Command to be executed: terraform $1 -var-file=variables.tfvars ${@:2}"
-        terraform "$1" -var-file="variables.tfvars" "${@:2}"
+    if [ "$cmd" = "help" ] || [ $# -eq 0 ]; then
+        echo "Usage: tf <command> [service]"
+        echo "Examples:"
+        echo "  tf plan cloudflare    # Plan using cloudflare.auto.tfvars and target the cloudflare module"
+        echo "  tf apply proxmox      # Apply using proxmox.auto.tfvars and target the proxmox module"
+        echo "  tf plan               # Plan all services"
+        return
+    fi
+
+    if [ -n "$service" ]; then
+        local varfile="${service}.auto.tfvars"
+        if [ ! -f "$varfile" ]; then
+            echo "Error: ${varfile} not found"
+            return 1
+        fi
+        terraform "$cmd" -target="module.$service"
     else
-        echo "Command to be executed: terraform $@"
-        terraform "$@"
+        terraform "$cmd"
     fi
 }
 
@@ -36,9 +50,10 @@ function ipactive {
 
 findfile() {
   if [ -n "$1" ]; then
-    find . -name "$1" | xargs dirname
+    find . -name "$1" | map 
   else
-    read -p "Enter search (eg *.ext): " fileName
-    find . -name "$fileName" | xargs dirname
-  fi
+    print "Enter search (eg *.ext): "
+    read -r fileName
+    find . -name "$fileName" | map 
+ fi
 }

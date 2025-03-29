@@ -6,3 +6,5 @@ else # macOS `ls`
 	colorflag="-G"
 	export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
+export XDG_DATA_DIRS=/usr/share:/usr/local/share:$XDG_DATA_DIRS
+PATH=$PATH:/usr/local/go/bin
