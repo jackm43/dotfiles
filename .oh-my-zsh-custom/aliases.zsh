@@ -35,9 +35,13 @@ realbackup="cd /mnt/nas/backup/Projects"
 #########################
 
 alias ideas="vim /mnt/chatting/projects/ideas.md"
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
 alias vimrc="vim ~/.vim_runtime/my_configs.vim"
+
+alias gstatus="git status -s | fzf --multi --preview 'git diff --color=always {2}' --preview-window=right:70% --bind 'ctrl-a:execute(git add {2})+reload(git status -s),enter:execute(vim {2})'"
+alias gadd="git ls-files -m | fzf --multi --preview 'git diff --color=always {}' --preview-window=right:70% | xargs git add"
+alias gdiff="git ls-files -m | fzf --preview 'git diff --color=always {}' --preview-window=right:70% | xargs git diff"
+
 alias map="xargs -n1"
 alias custom="cd ${ZSH_CUSTOM}"
 alias dcomposeup="sudo docker compose up -d"
@@ -45,7 +49,7 @@ alias dcomposedown="sudo docker compose down"
 alias dps="sudo docker ps"
 alias dpsa="sudo docker ps -a"
 alias dpruneall="sudo docker system prune --all"
-
+alias copy="xclip"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "${method}"="lwp-request -m '${method}'"
 done

@@ -57,3 +57,22 @@ findfile() {
     find . -name "$fileName" | map 
  fi
 }
+
+dotfiles() {
+  if [ "$1" = "gstatus" ]; then
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME status -s | \
+    fzf --multi --preview '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME diff --color=always {2}' \
+    --preview-window=right:70% \
+    --bind 'ctrl-a:execute(/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add {2})+reload(/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME status -s),tab:execute(vim {2})'
+  elif [ "$1" = "gadd" ]; then
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME status -s | awk '{print $2}' | \
+    fzf --multi --preview '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME diff --color=always {}' \
+    --preview-window=right:70% | xargs -I{} /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add "{}"
+  elif [ "$1" = "gdiff" ]; then
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME status -s | awk '{print $2}' | \
+    fzf --preview '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME diff --color=always {}' \
+    --preview-window=right:70% --bind 'tab:execute(vim {})' | xargs -I{} /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME diff "{}"
+  else
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME "$@"
+  fi
+}
