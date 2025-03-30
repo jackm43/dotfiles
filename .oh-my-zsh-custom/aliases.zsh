@@ -37,7 +37,7 @@ realbackup="cd /mnt/nas/backup/Projects"
 alias ideas="vim /mnt/chatting/projects/ideas.md"
 alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
 alias vimrc="vim ~/.vim_runtime/my_configs.vim"
-
+alias chmodx="find_chmod_sh"
 alias gstatus="git status -s | fzf --multi --preview 'git diff --color=always {2}' --preview-window=right:70% --bind 'ctrl-a:execute(git add {2})+reload(git status -s),enter:execute(vim {2})'"
 alias gadd="git ls-files -m | fzf --multi --preview 'git diff --color=always {}' --preview-window=right:70% | xargs git add"
 alias gdiff="git ls-files -m | fzf --preview 'git diff --color=always {}' --preview-window=right:70% | xargs git diff"
