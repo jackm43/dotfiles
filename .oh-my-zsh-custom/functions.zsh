@@ -23,6 +23,10 @@ tf() {
     fi
 }
 
+function curl-cert() {
+  openssl s_client -showcerts -connect "${1}":443 -servername ${1}
+}
+
 function ipactive {
     br_interfaces=$(ip -o addr show | grep br-)
 
@@ -100,4 +104,61 @@ find_chmod_sh() {
     fi
     return 0
   fi
+}
+
+git_undo_last_commit() {
+  git reset --soft HEAD~1
+  if [ $# -gt 0 ]; then
+    git restore --staged "$@"
+  fi
+  echo "Last commit undone. Changes are back in your working directory."
+}
+
+bookmarks_to_markdown() {
+  local input_file="${1:-bookmarks.html}"
+  local output_file="${2:-bookmarks_table.md}"
+
+  (
+    echo "| URL | Description |"
+    echo "| --- | ----------- |"
+    cat "$input_file" | grep -o '<A HREF="[^"]*".*</A>' | sed 's/<A HREF="\([^"]*\)"[^>]*>\(.*\)<\/A>/| \1 | \2 |/'
+  ) > "$output_file"
+
+  echo "Converted $input_file to markdown table in $output_file"
+}
+
+alias_list() {
+  if [ -z "$1" ]; then
+    alias
+  else
+    alias | grep -i "$1 | sed 's/=.*//'"
+  fi
+}
+
+function fh() {
+    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+function h() {
+    if [ -z "$*" ]; then
+        history 1
+    else
+        history 1 | egrep --color=auto "$@"
+    fi
+}
+
+function fshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" \
+  | fzf --ansi --preview "echo {} \
+    | grep -o '[a-f0-9]\{7\}' \
+    | head -1 \
+    | xargs -I % sh -c 'git show --color=always %'" \
+        --bind "enter:execute:
+            (grep -o '[a-f0-9]\{7\}' \
+                | head -1 \
+                | xargs -I % sh -c 'git show --color=always % \
+                | less -R') << 'FZF-EOF'
+            {}
+FZF-EOF"
 }
