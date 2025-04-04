@@ -1,0 +1,23 @@
+{
+    "window.commandCenter": 1,
+    "cursor.cmdk.useThemedDiffBackground": true,
+    "files.autoSave": "afterDelay",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmPasteNative": false,
+    "update.releaseTrack": "prerelease",
+    "cursor.composer.shouldAllowCustomModes": true,
+    "projectManager.git.baseFolders": [
+        "/mnt/chatting/projects"
+    ],
+    "files.simpleDialog.enable": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
+    "workbench.editor.restoreViewState": false,
+    "workbench.editor.limit.value": 2,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.limit.enabled": true,
+    "projectManager.ignoreProjectsWithinProjects": true,
+    "projectManager.openInNewWindowWhenClickingInStatusBar": false,
+    "projectManager.openInCurrentWindowIfEmpty": "always"
+}
