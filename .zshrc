@@ -3,38 +3,53 @@ export ZSH="$HOME/.oh-my-zsh"
 export QLTY_INSTALL="$HOME/.qlty"
 export RPROMPT='%t'
 export PATH="$QLTY_INSTALL/bin:$PATH"
-zstyle ':omz:update' frequency 7
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
+
+# -------------------
+# THEME
+#  -------------------
 
 ZSH_THEME="robbyrussell"
 
-# Uncomment the following line if pasting URLs and other text is messed up.
+
+# -------------------
+# Options
+# -------------------
+
+zstyle ':omz:update' frequency 7
+
+setopt EXTENDED_HISTORY          # Write history in ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY        # Write to history immediately.
+setopt SHARE_HISTORY             # Share history between sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate events first.
+setopt HIST_IGNORE_DUPS          # Skip immediately repeated commands.
+setopt HIST_IGNORE_ALL_DUPS      # Remove older duplicates.
+setopt HIST_FIND_NO_DUPS         # Hide dupes when searching.
+setopt HIST_IGNORE_SPACE         # Skip commands that start with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write dupes to file.
+setopt HIST_VERIFY               # Confirm before executing from history.
+setopt APPEND_HISTORY            # Append instead of overwrite.
+setopt HIST_NO_STORE             # Don't log history commands (like `history`).
+
+HIST_STAMPS="dd.mm.yyyy"
 DISABLE_MAGIC_FUNCTIONS="true"
 ENABLE_CORRECTION="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-HIST_STAMPS="dd.mm.yyyy"
+# -------------------
+# Plugins
+# -------------------
 
-# Builtin plugins
 plugins=(aliases z gitignore zsh-autosuggestions)
 
-# Custom plugin def when above cant work 
+# Custom plugin path for completions
+
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# -------------------
+# Oh My Zsh
+# -------------------
 
-# CONFIG
-
-setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
-setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
-setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
-setopt APPEND_HISTORY            # append to history file
-setopt HIST_NO_STORE             # Don't store history commands
-#
 source $ZSH/oh-my-zsh.sh
+
