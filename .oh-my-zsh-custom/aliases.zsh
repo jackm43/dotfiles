@@ -37,6 +37,7 @@ alias ideas="vim /mnt/chatting/projects/ideas.md"
 alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vim_runtime/my_configs.vim"
+alias kittyconf="vim ~/.config/kitty/kitty.conf"
 alias chmodx="find_chmod_sh"
 alias gstatus="git status -s | fzf --multi --preview 'git diff --color=always {2}' --preview-window=right:70% --bind 'ctrl-a:execute(git add {2})+reload(git status -s),enter:execute(vim {2})'"
 alias gadd="git ls-files -m | fzf --multi --preview 'git diff --color=always {}' --preview-window=right:70% | xargs git add"
@@ -59,20 +60,20 @@ alias a="alias_list"
 alias aliasgrep="alias_list"
 alias aliasfind="alias_list"
 
-alias vimalias="custom && vim aliases.zsh"
-alias vimaliases="custom && vim aliases.zsh"
+alias vimalias='vim ~/.oh-my-zsh/custom/aliases.zsh'
 
-alias vimfunc="custom && vim functions.zsh"
-alias vimfunctions="custom && vim functions.zsh"
+alias vimfunc="vim ~/.oh-my-zsh/custom/functions.zsh"
 
 alias h="fh"
 alias history-stat='history 0 | awk ''{print $2}'' | sort | uniq -c | sort -n -r | head'
+
+alias iplocal="ip addr | grep 192 | awk '{print $2}' | cut -d'/' -f1"
 
 which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
 
 alias lint="qlty"
 
-
+alias uvactivate="source .venv/bin/activate"
 
 #########################
 # MOUNTING 
