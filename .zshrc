@@ -6,6 +6,7 @@ export PATH="$QLTY_INSTALL/bin:$PATH"
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
 
+# export PATH="$PATH:/home/jackm/.lmstudio/bin"
 # -------------------
 # THEME
 #  -------------------
@@ -53,3 +54,5 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
 
+
+# Added by LM Studio CLI (lms)

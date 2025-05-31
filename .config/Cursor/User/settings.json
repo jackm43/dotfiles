@@ -30,12 +30,18 @@
         "app/*": true,
         "esp/*": true,
         "**/.python-version": true,
-        "**/uv.lock": true,
-        "**/.venv": true
+        "**/*venv": true,
+        "**/*__pycache__": true
     },
-    "editor.unicodeHighlight.ambiguousCharacters": false,
-    "diffEditor.maxComputationTime": 0,
-    "cursor.general.gitGraphIndexing": "enabled",
-    "vim.vimrc.path": "~/.vim_runtime/my_configs.vim",
-    "editor.formatOnSave": true,
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/.git/**": true,
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "diffEditor.maxComputationTime": 0,
+        "cursor.general.gitGraphIndexing": true,
+            // "vim.vimrc.path": "~/.vim_runtime/my_configs.vim",
+        "editor.formatOnSave": true,
+    },
+    "cursor.cpp.enablePartialAccepts": true,
+    "editor.unicodeHighlight.ambiguousCharacters": false
 }
