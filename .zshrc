@@ -6,20 +6,11 @@ export PATH="$QLTY_INSTALL/bin:$PATH"
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
 export EDITOR="vim"
-
-# export PATH="$PATH:/home/jackm/.lmstudio/bin"
-# -------------------
-# THEME
-#  -------------------
-
 ZSH_THEME="robbyrussell"
-
 
 # -------------------
 # Options
 # -------------------
-
-zstyle ':omz:update' frequency 7
 
 setopt EXTENDED_HISTORY          # Write history in ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY        # Write to history immediately.
@@ -36,30 +27,68 @@ setopt HIST_NO_STORE             # Don't log history commands (like `history`).
 
 HIST_STAMPS="dd.mm.yyyy"
 DISABLE_MAGIC_FUNCTIONS="true"
-ENABLE_CORRECTION="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
+#ENABLE_CORRECTION="true"
+#DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_COMPFIX="true"
 # -------------------
 # Plugins
 # -------------------
 
 plugins=(
-    aliases
-    z
-    gitignore
+    #gitfast
+    httpie
     zsh-autosuggestions
+    zsh-syntax-highlighting
+    uv
 )
-
-# Custom plugin path for completions
-
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 # -------------------
 # Oh My Zsh
 # -------------------
 
+# Cache completions aggressively
+
+autoload -Uz compinit
+
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+
+    compinit
+
+else
+
+    compinit -C
+
+fi
+
 source $ZSH/oh-my-zsh.sh
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-# Added by LM Studio CLI (lms)
-export FPATH="~/eza/completions/zsh:$FPATH"
+globalias() {
+
+   if [[ $LBUFFER =~ '[a-zA-Z0-9]+$' ]]; then
+
+       zle _expand_alias
+
+       zle expand-word
+
+   fi
+
+   zle self-insert
+
+}
+
+zle -N globalias
+bindkey " " globalias
+bindkey "^[[Z" magic-space
+bindkey -M isearch " " magic-space
+
+#setopt MENU_COMPLETE
+#setopt AUTO_MENU
+#setopt AUTO_LIST
+#setopt AUTO_PARAM_SLASH 
+
+
+
