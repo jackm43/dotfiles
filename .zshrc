@@ -5,6 +5,7 @@ export RPROMPT='%t'
 export PATH="$QLTY_INSTALL/bin:$PATH"
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
+export EDITOR="vim"
 
 # export PATH="$PATH:/home/jackm/.lmstudio/bin"
 # -------------------
@@ -42,7 +43,12 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Plugins
 # -------------------
 
-plugins=(aliases z gitignore zsh-autosuggestions)
+plugins=(
+    aliases
+    z
+    gitignore
+    zsh-autosuggestions
+)
 
 # Custom plugin path for completions
 
@@ -56,3 +62,4 @@ source $ZSH/oh-my-zsh.sh
 
 
 # Added by LM Studio CLI (lms)
+export FPATH="~/eza/completions/zsh:$FPATH"

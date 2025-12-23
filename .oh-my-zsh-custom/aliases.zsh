@@ -28,7 +28,18 @@ LS_FLAGS="--all --group-directories-first --time-style=relative --sort=name --hy
 alias ls="eza ${LS_FLAGS}"
 alias ll="eza ${LS_FLAGS} --long --binary --modified --git --classify"
 alias tree="ll --tree"
-realbackup="cd /mnt/nas/backup/Projects"
+
+alias ls='eza $eza_params'
+alias l='eza --git-ignore $eza_params'
+alias ll='eza --all --header --long $eza_params'
+alias llm='eza --all --header --long --sort=modified $eza_params'
+alias la='eza -lbhHigUmuSa'
+alias lx='eza -lbhHigUmuSa@'
+alias lt='eza --tree $eza_params'
+alias tree='eza --tree $eza_params'
+alias home="cd ~"
+alias ddisk="cd /mnt/d"
+
 #########################
 # SHORTCUTS 
 #########################
@@ -38,20 +49,27 @@ alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.p
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vim_runtime/my_configs.vim"
 alias kittyconf="vim ~/.config/kitty/kitty.conf"
-alias chmodx="find_chmod_sh"
-alias gstatus="git status -s | fzf --multi --preview 'git diff --color=always {2}' --preview-window=right:70% --bind 'ctrl-a:execute(git add {2})+reload(git status -s),enter:execute(vim {2})'"
-alias gadd="git ls-files -m | fzf --multi --preview 'git diff --color=always {}' --preview-window=right:70% | xargs git add"
-alias gdiff="git ls-files -m | fzf --preview 'git diff --color=always {}' --preview-window=right:70% | xargs git diff"
-alias gundo="git_undo_last_commit"
-alias gitundo="git_undo_last_commit"
-alias bookmarktomd="bookmarks_to_markdown"
+alias config.alacritty="vim /mnt/c/Users/jackm/AppData/Roaming/alacritty/alacritty.toml"
+alias config.tmux="vim ~/.config/tmux/tmux.conf.local"
 alias map="xargs -n1"
+
+alias g="git"
+alias gs="git status";
+alias gp="git push";
+alias gd="git diff";
+alias gc="git commit -m";
+alias gac="git add .; git commit -m";
+alias gaa="git add .";
+alias gb="git branch";
+alias gco="git checkout";
+alias gp="git pull";
+
 alias custom="cd ${ZSH_CUSTOM}"
-alias dcomposeup="sudo docker compose up -d"
-alias dcomposedown="sudo docker compose down"
-alias dps="sudo docker ps"
-alias dpsa="sudo docker ps -a"
-alias dprune="sudo docker system prune --all"
+alias dcu="docker compose up -d"
+alias dcd="docker compose down"
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias dprune="docker system prune --all"
 alias copy="xclip"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "${method}"="lwp-request -m '${method}'"
@@ -59,36 +77,31 @@ done
 alias a="alias_list"
 alias aliasgrep="alias_list"
 alias aliasfind="alias_list"
-
 alias vimalias='vim ~/.oh-my-zsh/custom/aliases.zsh'
-
 alias vimfunc="vim ~/.oh-my-zsh/custom/functions.zsh"
-
 alias h="fh"
 alias history-stat='history 0 | awk ''{print $2}'' | sort | uniq -c | sort -n -r | head'
-
 alias iplocal="ip addr | grep 192 | awk '{print $2}' | cut -d'/' -f1"
-
 which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
-
 alias lint="qlty"
-
-alias uvactivate="source .venv/bin/activate"
-
-#########################
-# MOUNTING 
-#########################
-
-alias mntproj='sudo mount -t nfs 192.168.1.83:/volume1/projects /mnt/nas'
-alias mntmedia='sudo mount -t nfs 192.168.1.83:/volume1/Media/collections /mnt/nas_media'
 
 #########################
 # MISC 
 #########################
 alias reload="exec zsh -l"
 alias gitignore_origin="git config --list --show-origin"
-alias opensnitch_daemon="systemctl enable --now opensnitch.service"
 
+#########################
+# MISC 
+#########################
+
+alias newenv="uv venv"
+alias env="source .venv/bin/activate"
+alias exitenv="deactivate"
+. "$HOME/.local/bin/env"
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
 
 #➜  custom git:(master) ✗ git rev-parse --show-toplevel
 #/home/jackm/.oh-my-zsh
