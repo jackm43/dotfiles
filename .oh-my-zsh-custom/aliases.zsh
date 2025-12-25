@@ -77,3 +77,5 @@ alias exitenv="deactivate"
 #. "$HOME/.local/bin/env"
 export PATH="$HOME/.local/bin:$PATH"
 
+alias ssh='ssh.exe'
+alias ssh-add='ssh-add.exe'
