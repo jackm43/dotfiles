@@ -25,7 +25,7 @@ cp "$HOME/dotfiles/.oh-my-zsh-custom/aliases.zsh" "$ZSH/custom/aliases.zsh"
 cp "$HOME/dotfiles/.oh-my-zsh-custom/exports.zsh" "$ZSH/custom/exports.zsh"
 
 cp "$HOME/dotfiles/.oh-my-zsh-custom/functions.zsh" "$ZSH/custom/functions.zsh"
-
+cp "$HOME/dotfiles/.gitconfig" "$HOME/.gitconfig"
 
 
 ln -sf "$HOME/dotfiles/.oh-my-zsh-custom/aliases.zsh" "$ZSH/custom/aliases.zsh"
@@ -33,7 +33,7 @@ ln -sf "$HOME/dotfiles/.oh-my-zsh-custom/aliases.zsh" "$ZSH/custom/aliases.zsh"
 ln -sf "$HOME/dotfiles/.oh-my-zsh-custom/exports.zsh" "$ZSH/custom/exports.zsh"
 
 ln -sf "$HOME/dotfiles/.oh-my-zsh-custom/functions.zsh" "$ZSH/custom/functions.zsh"
-
+ln -sf "$HOME/dotfiles/.gitconfig" "$HOME/.gitconfig"
 
 
 cp "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
