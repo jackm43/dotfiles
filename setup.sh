@@ -1,39 +1,48 @@
-# Create directory for the bare repository
-#git clone --bare https://github.com/jackm43/dotfiles.git $HOME/.dotfiles
+#!/usr/bin/env bash
 
-#alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+set -e
 
-#dotfiles checkout
 
-#dotfiles config --local status.showUntrackedFiles no
-# Create Oh My Zsh custom directory if it doesn't exist
-mkdir -p ~/.oh-my-zsh-custom
 
-# Copy existing files if they exist, otherwise create empty ones
-if [ -f ~/.oh-my-zsh/custom/aliases.zsh ]; then
-    cp ~/.oh-my-zsh/custom/aliases.zsh ~/.oh-my-zsh-custom/
-else
-    touch ~/.oh-my-zsh-custom/aliases.zsh
-fi
+ZSH="$HOME/.oh-my-zsh"
 
-if [ -f ~/.oh-my-zsh/custom/exports.zsh ]; then
-    cp ~/.oh-my-zsh/custom/exports.zsh ~/.oh-my-zsh-custom/
-else
-    touch ~/.oh-my-zsh-custom/exports.zsh
-fi
 
-if [ -f ~/.oh-my-zsh/custom/functions.zsh ]; then
-    cp ~/.oh-my-zsh/custom/functions.zsh ~/.oh-my-zsh-custom/
-else
-    touch ~/.oh-my-zsh-custom/functions.zsh
-fi
 
-# Create symbolic links
-ln -sf ~/.oh-my-zsh-custom/aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
-ln -sf ~/.oh-my-zsh-custom/exports.zsh ~/.oh-my-zsh/custom/exports.zsh
-ln -sf ~/.oh-my-zsh-custom/functions.zsh ~/.oh-my-zsh/custom/functions.zsh
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-# Add to dotfiles repository
-dotfiles add ~/.oh-my-zsh-custom/aliases.zsh
-dotfiles add ~/.oh-my-zsh-custom/exports.zsh
-dotfiles add ~/.oh-my-zsh-custom/functions.zsh
+
+
+git clone https://github.com/jackm43/dotfiles.git "$HOME/dotfiles"
+
+
+
+#mkdir -p "$ZSH/custom"
+
+
+
+cp "$HOME/dotfiles/.oh-my-zsh-custom/aliases.zsh" "$ZSH/custom/aliases.zsh"
+
+cp "$HOME/dotfiles/.oh-my-zsh-custom/exports.zsh" "$ZSH/custom/exports.zsh"
+
+cp "$HOME/dotfiles/.oh-my-zsh-custom/functions.zsh" "$ZSH/custom/functions.zsh"
+
+
+
+ln -sf "$HOME/dotfiles/.oh-my-zsh-custom/aliases.zsh" "$ZSH/custom/aliases.zsh"
+
+ln -sf "$HOME/dotfiles/.oh-my-zsh-custom/exports.zsh" "$ZSH/custom/exports.zsh"
+
+ln -sf "$HOME/dotfiles/.oh-my-zsh-custom/functions.zsh" "$ZSH/custom/functions.zsh"
+
+
+
+cp "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
+
+ln -sf "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
+chsh -s $(which zsh)
+
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+
+exec zsh -l
