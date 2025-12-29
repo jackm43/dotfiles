@@ -40,6 +40,7 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     uv
+    bazel
 )
 
 # -------------------
@@ -66,22 +67,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-globalias() {
-
-   if [[ $LBUFFER =~ '[a-zA-Z0-9]+$' ]]; then
-
-       zle _expand_alias
-
-       zle expand-word
-
-   fi
-
-   zle self-insert
-
-}
-
-zle -N globalias
-bindkey " " globalias
+#indkey " " globalias
 bindkey "^[[Z" magic-space
 bindkey -M isearch " " magic-space
 
@@ -92,3 +78,7 @@ bindkey -M isearch " " magic-space
 
 
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

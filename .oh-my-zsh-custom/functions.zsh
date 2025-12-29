@@ -146,4 +146,17 @@ function fshow() {
                 | less -R') << 'FZF-EOF'
             {}
 FZF-EOF"
+
 }
+
+#globalias() {
+
+ #  if [[ $LBUFFER =~ '[a-zA-Z0-9]+$' ]]; then
+
+  #     zle _expand_alias
+
+   #    zle expand-word
+
+   #fi
+   #zle self-insert
+#}

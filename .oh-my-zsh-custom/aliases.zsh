@@ -14,7 +14,6 @@ alias projects='cd /mnt/d/projects'
 #########################
 
 LS_FLAGS="--all --group-directories-first --time-style=relative --sort=name --hyperlink --no-permissions --icons=never"
-alias ls="eza ${LS_FLAGS}"
 alias ll="eza ${LS_FLAGS} --long --binary --modified --git --classify"
 alias l='eza --git-ignore ${LS_FLAGS}'
 alias llm='eza --all --header --long --sort=modified ${LS_FLAGS}'

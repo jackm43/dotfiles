@@ -8,4 +8,7 @@ else # macOS `ls`
 	export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 export XDG_DATA_DIRS=/usr/share:/usr/local/share:$XDG_DATA_DIRS
+export GOPATH=$HOME/go
+export GOBIN=$HOME/go/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 PATH=$PATH:/usr/local/go/bin

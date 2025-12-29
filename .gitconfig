@@ -17,3 +17,5 @@
 	sshCommand = ssh.exe
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main
