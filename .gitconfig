@@ -1,8 +1,7 @@
 [user]
 	email = jack@jsmunro.me
 	name = Jack Munro
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOCuKthJcfcU+Wf1RrV9/LDC3biTuO+6VbspB0hDA2+j
-
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGPlR0NU+KZGkUqxp6Xav2wHHTHTyPNONb+oRU9A9A8g 
 
 [gpg]
   format = ssh
@@ -11,11 +10,16 @@
   program = "/mnt/c/Users/jackm/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe"
 
 [commit]
-  gpgsign = true
+	gpgsign = false
 
 [core]
 	sshCommand = ssh.exe
+  editor = nvim
+
 [pull]
 	rebase = true
+
 [init]
 	defaultBranch = main
+[credential]
+	helper = 

@@ -29,7 +29,7 @@ alias ddisk="cd /mnt/d"
 #########################
 
 alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vim_runtime/my_configs.vim"
+alias vimrc="cd ~/.config/nvim"
 alias config.alacritty="vim /mnt/c/Users/jackm/AppData/Roaming/alacritty/alacritty.toml"
 alias config.tmux="vim ~/.config/tmux/tmux.conf.local"
 alias map="xargs -n1"
@@ -59,7 +59,7 @@ done
 
 alias vimalias='vim ~/.oh-my-zsh/custom/aliases.zsh'
 alias vimfunc="vim ~/.oh-my-zsh/custom/functions.zsh"
-
+alias vim="nvim"
 #########################
 # MISC 
 #########################
