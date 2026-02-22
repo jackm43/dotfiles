@@ -13,3 +13,4 @@ export GOBIN=$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 PATH=$PATH:/usr/local/go/bin
 UV_LINK_MODE=copy
+AWS_PROFILE=terraform

@@ -10,7 +10,7 @@
   program = "/mnt/c/Users/jackm/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe"
 
 [commit]
-	gpgsign = false
+	gpgsign = true
 
 [core]
 	sshCommand = ssh.exe
@@ -23,3 +23,15 @@
 	defaultBranch = main
 [credential]
 	helper = 
+[push]
+	autoSetupRemote = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[url "ssh://jackm@git.jsmunro.me:222/"]
+	insteadOf = git@git.jsmunro.me:
+[credential "https://git.jsmunro.me"]
+	helper = store

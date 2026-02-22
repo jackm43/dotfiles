@@ -35,6 +35,8 @@ ln -sf "$HOME/dotfiles/.oh-my-zsh-custom/exports.zsh" "$ZSH/custom/exports.zsh"
 ln -sf "$HOME/dotfiles/.oh-my-zsh-custom/functions.zsh" "$ZSH/custom/functions.zsh"
 ln -sf "$HOME/dotfiles/.gitconfig" "$HOME/.gitconfig"
 
+mkdir -p "$HOME/.config"
+ln -sf "$HOME/dotfiles/.config/starship.toml" "$HOME/.config/starship.toml"
 
 cp "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
 

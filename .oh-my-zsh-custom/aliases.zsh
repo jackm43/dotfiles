@@ -78,3 +78,5 @@ export PATH="$HOME/.local/bin:$PATH"
 
 alias ssh='ssh.exe'
 alias ssh-add='ssh-add.exe'
+# temp for cf-with-pki-proj
+alias gr="go run ."

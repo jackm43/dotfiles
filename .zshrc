@@ -38,9 +38,7 @@ plugins=(
     gitfast
     zsh-autosuggestions
     zsh-syntax-highlighting
-	starship
-	rust
-	1password
+	  starship
 )
 
 # -------------------

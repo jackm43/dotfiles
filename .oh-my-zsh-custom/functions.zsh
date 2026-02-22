@@ -149,6 +149,19 @@ FZF-EOF"
 
 }
 
+jwt-decode() {
+  echo "$1" | jq -R '
+    split(".") | .[0:2] | 
+    map(
+      gsub("-"; "+") | gsub("_"; "/") | @base64d | fromjson |
+      # Transform integer fields like exp and iat
+      (if .exp then .exp_human = (.exp | strftime("%Y-%m-%d %H:%M:%S")) else . end) |
+      (if .iat then .iat_human = (.iat | strftime("%Y-%m-%d %H:%M:%S")) else . end) |
+      # Transform string timestamps like "time": "1769260775"
+      (if .time then .time_human = (.time | tonumber | strftime("%Y-%m-%d %H:%M:%S")) else . end)
+    )'
+}
+
 #globalias() {
 
  #  if [[ $LBUFFER =~ '[a-zA-Z0-9]+$' ]]; then
